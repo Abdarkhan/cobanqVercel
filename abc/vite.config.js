@@ -4,7 +4,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/", // Use absolute base for production deployment
+  base: "https://cobanq-vercel.vercel.app/", // Use absolute base for production deployment
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
