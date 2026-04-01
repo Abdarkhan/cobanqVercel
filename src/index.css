@@ -1,0 +1,24 @@
+:root {
+  --color-accent-start: #000616;
+  --color-accent-end: #053684;
+  --gradient-primary: linear-gradient(90deg, #000616 0%, #053684 100%);
+  --gradient-primary-135: linear-gradient(135deg, #000616 0%, #053684 100%);
+  --color-surface-border: rgba(255, 255, 255, 0.08);
+  --color-surface-border-light: rgba(0, 0, 0, 0.08);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(5, 54, 132, 0.2);
+  color: inherit;
+}
