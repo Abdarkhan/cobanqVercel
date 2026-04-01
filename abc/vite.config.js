@@ -4,7 +4,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  base: "./src",
+  base: "/",
   resolve: {
     // REMOVE THIS if you aren't using styled-components:
     // "@mui/styled-engine": "@mui/styled-engine-sc", 
