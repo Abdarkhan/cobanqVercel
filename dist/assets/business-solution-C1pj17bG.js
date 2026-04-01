@@ -1,0 +1,1 @@
+import{n as e,s as t,t as n}from"./jsx-runtime-C7M7YA1l.js";t(e(),1);var r=n(),i=()=>(0,r.jsx)(`div`,{children:`Business Solution`});export{i as default};
