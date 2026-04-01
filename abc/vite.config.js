@@ -4,10 +4,10 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/", // Use absolute base for production deployment
-   build: {
-    outDir: "dist", // Ensure this matches Vercel's Output Directory setting
-  },
+  // base: "/", // Use absolute base for production deployment
+  //  build: {
+  //   outDir: "dist", // Ensure this matches Vercel's Output Directory setting
+  // },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
