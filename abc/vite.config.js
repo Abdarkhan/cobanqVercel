@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  base: '/myapp/',
   plugins: [react()],
   resolve: {
     // REMOVE THIS if you aren't using styled-components:
