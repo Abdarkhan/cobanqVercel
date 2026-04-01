@@ -12,13 +12,14 @@ import {
 import { Facebook, Twitter, Instagram, LinkedIn } from "@mui/icons-material";
 import { Link, Link as RouterLink } from "react-router-dom";
 import { ICONS } from "@/constants/icons";
+import { ROUTES } from "@/constants/routes";
 
 const FOOTER_LINKS = {
   solutions: {
     title: "Solutions",
     links: [
-      { label: "All Solutions", href: "/solution" },
-      { label: "Calculator", href: "/ExchangeRate" },
+      { label: "All Solutions", href: ROUTES.SOLUTION },
+      { label: "Calculator", href: ROUTES.EXCHANGE_RATE },
       // { label: "Business Solutions", href: "/solutions" },
       // { label: "Personal Transfers", href: "/solutions" },
     ],
@@ -26,15 +27,15 @@ const FOOTER_LINKS = {
   company: {
     title: "Company",
     links: [
-      { label: "About Us", href: "/about" },
-      { label: "Contact", href: "/contact" },
+      { label: "About Us", href: ROUTES.ABOUT },
+      { label: "Contact", href: ROUTES.CONTACT },
     ],
   },
   help: {
     title: "Help & Support",
     links: [
-      { label: "FAQ", href: "/faq" },
-      { label: "Support Center", href: "/support" },
+      { label: "FAQ", href: ROUTES.FAQ },
+      { label: "Support Center", href: ROUTES.SUPPORT },
     ],
   },
 };

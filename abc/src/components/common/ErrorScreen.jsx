@@ -1,3 +1,4 @@
+import { ROUTES } from "@/constants/routes";
 import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -24,7 +25,7 @@ export default function ErrorScreen({ error }) {
                     {error.message || error.toString()}
                 </Typography>
             )}
-            <Button variant="contained" onClick={() => navigate("/")}>
+            <Button variant="contained" onClick={() => navigate(ROUTES.HOME)}>
                 Go Home
             </Button>
         </Box>

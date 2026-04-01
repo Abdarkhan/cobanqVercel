@@ -32,16 +32,17 @@ import {
   CardActionArea,
   CardContent,
 } from "@mui/material";
+import { ROUTES } from "@/constants/routes";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const NAV_BG_SCROLL_RANGE = 400;
 const OPACITY_STEP = 0.04;
 
 const NAV_LINKS = [
-  { label: "Solutions", path: "/solution" },
-  { label: "About Us", path: "/about" },
-  { label: "Calculator", path: "/ExchangeRate" },
-  { label: "Contact-Us", path: "/contact" },
+  { label: "Solutions", path: ROUTES.SOLUTION},
+  { label: "About Us", path: ROUTES.ABOUT},
+  { label: "Calculator", path: ROUTES.EXCHANGE_RATE },
+  { label: "Contact-Us", path: ROUTES.CONTACT },
 ];
 
 // ─── Account Type Modal ───────────────────────────────────────────────────────

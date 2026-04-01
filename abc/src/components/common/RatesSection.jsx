@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Box, Container, Typography, Chip } from "@mui/material";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/constants/routes";
 
 // ─── Reveal wrapper
 function Reveal({ children, delay = 0, direction = "up" }) {
@@ -378,7 +379,7 @@ export default function RatesSection() {
                   color: "text.tertairy",
                 }}
                 onClick={() => {
-                  navigate("/ExchangeRate");
+                  navigate(ROUTES.EXCHANGE_RATE);
                   window.scrollTo(0, 0);
                 }}
               >

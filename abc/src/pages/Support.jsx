@@ -7,6 +7,7 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import LockOutlineIcon from '@mui/icons-material/LockOutline';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import ScaleIcon from '@mui/icons-material/Scale';
+import { ROUTES } from "@/constants/routes";
 
 // ─── Support Cards Data (exact from burqfx.com/support) ──────────────────────
 const supportCards = [
@@ -191,14 +192,14 @@ const Support = () => {
     const handleCardClick = (card) => {
         if (card.faqSection) {
             // Navigate to FAQ page, then scroll to the section
-            navigate("/faq");
+            navigate(ROUTES.FAQ);
             // Small timeout lets the page mount before scrolling
             setTimeout(() => {
                 const el = document.getElementById(card.faqSection);
                 if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
             }, 120);
         } else {
-            navigate("/solutions");
+            navigate(ROUTES.SOLUTION);
         }
     };
 

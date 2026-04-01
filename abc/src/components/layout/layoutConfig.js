@@ -1,3 +1,5 @@
+import { ROUTES } from "@/constants/routes";
+
 export const layoutConfig = {
   "/": {
     navbar: true,
@@ -25,7 +27,7 @@ export const layoutConfig = {
   "/ExchangeRate": {
     navbar: true,
     footer: true,
-    layout: "ExchangeRate",
+    layout: ROUTES.EXCHANGE_RATE,
   },
 
   "*": {
