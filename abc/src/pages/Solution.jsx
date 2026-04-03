@@ -11,6 +11,7 @@ import { ArrowForward } from "@mui/icons-material";
 import { motion, useInView } from "framer-motion";
 import { use_reveal } from "@/components/hooks/use_scroll_animation";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/constants/routes";
 
 const BORDER = "rgba(255,255,255,0.08)";
 
