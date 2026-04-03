@@ -377,7 +377,8 @@ const Support = () => {
                     {/* CTA */}
                     <Box
                         component="a"
-                        href="/contact"
+                        // href="/contact"
+                         onClick={() => navigate(ROUTES.CONTACT)}
                         sx={(theme) => ({
                             display: "inline-flex",
                             alignItems: "center",

@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { Box, Container, Typography } from "@mui/material";
 import { motion, useInView } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/constants/routes";
 
 const steps = [
   {
@@ -53,6 +55,8 @@ const item = {
 };
 
 export default function StepsSection() {
+  const navigate = useNavigate();
+
   const ref = useRef(null);
   const in_view = useInView(ref, { once: true, margin: "-80px" });
 
@@ -204,7 +208,8 @@ export default function StepsSection() {
               Ready to start?{" "}
               <Box
                 component="a"
-                href="/contact"
+                // href="/contact"
+                onClick={() => navigate(ROUTES.CONTACT)}
                 sx={{
                   color: "text.accent",
                   fontWeight: 600,

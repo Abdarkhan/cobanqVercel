@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import { Box, Container, Grid, Typography, Button } from "@mui/material";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/constants/routes";
 
 // Reusable Reveal wrapper
 function Reveal({ children, delay = 0, direction = "up" }) {
@@ -188,6 +190,8 @@ const stagger_item = {
 
 // Main Component
 const HelpCenter = () => {
+  const navigate = useNavigate();
+
   const [searchVal, setSearchVal] = useState("");
 
   return (
@@ -491,81 +495,87 @@ const HelpCenter = () => {
       <Box
         sx={{ py: { xs: 8, md: 12 }, position: "relative", overflow: "hidden" }}
       >
-        <Container maxWidth="lg" display="flex" justifyContent="center" alignItems="center">
+        <Container
+          maxWidth="lg"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
           {/* <Grid container spacing={8} > */}
-            {/* Row 1 — Centered Label */}
-            <Grid item xs={12}>
-              <Box
-                sx={{
-                  maxWidth: 600,
-                  mx: "auto",
-                  textAlign: "center",
-                }}
-              >
-                <Reveal delay={0}>
-                  <Typography
+          {/* Row 1 — Centered Label */}
+          <Grid item xs={12}>
+            <Box
+              sx={{
+                maxWidth: 600,
+                mx: "auto",
+                textAlign: "center",
+              }}
+            >
+              <Reveal delay={0}>
+                <Typography
+                  sx={{
+                    fontSize: { xs: 30, md: 40 },
+                    fontWeight: 700,
+                    lineHeight: 1.15,
+                    mb: 2.5,
+                    color: "text.tertairy",
+                  }}
+                >
+                  Common{" "}
+                  <Box
+                    component="span"
                     sx={{
-                      fontSize: { xs: 30, md: 40 },
-                      fontWeight: 700,
-                      lineHeight: 1.15,
-                      mb: 2.5,
-                      color: "text.tertairy",
+                      background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
                     }}
                   >
-                    Common{" "}
-                    <Box
-                      component="span"
-                      sx={{
-                        background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                      }}
-                    >
-                      Questions
-                    </Box>
-                  </Typography>
+                    Questions
+                  </Box>
+                </Typography>
 
-                  <Typography
+                <Typography
+                  sx={{
+                    color: "text.tertairy",
+                    lineHeight: 1.8,
+                    fontSize: 15,
+                    mb: 4,
+                  }}
+                >
+                  Can't find your answer here? Our support team is available
+                  24/7.
+                </Typography>
+
+                <motion.div
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  style={{ display: "inline-block" }}
+                >
+                  <Button
+                    // href="/contact"
+                    onClick={() => navigate(ROUTES.CONTACT)}
+                    variant="contained"
+                    size="large"
                     sx={{
-                      color: "text.tertairy",
-                      lineHeight: 1.8,
-                      fontSize: 15,
-                      mb: 4,
+                      background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
                     }}
                   >
-                    Can't find your answer here? Our support team is available
-                    24/7.
-                  </Typography>
-
-                  <motion.div
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.97 }}
-                    style={{ display: "inline-block" }}
-                  >
-                    <Button
-                      href="/contact"
-                      variant="contained"
-                      size="large"
-                      sx={{
-                        background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
-                      }}
-                    >
-                      Contact Support →
-                    </Button>
-                  </motion.div>
-                </Reveal>
-              </Box>
-            </Grid>
+                    Contact Support →
+                  </Button>
+                </motion.div>
+              </Reveal>
+            </Box>
+          </Grid>
 
           {/* </Grid> */}
-            {/* Row 2 — FAQ list full width */}
-            <Grid item xs={12} sx={{ mt: { xs: 1, md: 4 } }}>
-              {faqs.map((item, i) => (
-                <Reveal key={i} delay={0.05 + i * 0.06}>
-                  <FaqItem {...item} />
-                </Reveal>
-              ))}
-            </Grid>
+          {/* Row 2 — FAQ list full width */}
+          <Grid item xs={12} sx={{ mt: { xs: 1, md: 4 } }}>
+            {faqs.map((item, i) => (
+              <Reveal key={i} delay={0.05 + i * 0.06}>
+                <FaqItem {...item} />
+              </Reveal>
+            ))}
+          </Grid>
         </Container>
       </Box>
 

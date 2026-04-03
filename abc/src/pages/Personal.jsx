@@ -9,6 +9,8 @@ import {
   Divider,
 } from "@mui/material";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/constants/routes";
 
 // ─── Reveal──
 function Reveal({ children, delay = 0, direction = "up", once = true }) {
@@ -59,7 +61,7 @@ function Counter({ to, suffix = "", duration = 2 }) {
 }
 
 //  Plan Card
-function PlanCard({ name, price, desc, features, highlight, delay }) {
+function PlanCard({ name, price, desc, features, highlight, delay, navigate }) {
   return (
     <Reveal delay={delay} direction="up">
       <motion.div
@@ -79,25 +81,24 @@ function PlanCard({ name, price, desc, features, highlight, delay }) {
             bgcolor: "Background.secondary",
             ...(highlight
               ? {
-                background:
-                  "linear-gradient(145deg, rgba(30,120,255,0.18) 0%, rgba(0,222,180,0.1) 100%)",
-                border: "1px solid rgba(30,120,255,0.35)",
-                boxShadow: "0 0 60px rgba(30,120,255,0.15)",
-              }
+                  background:
+                    "linear-gradient(145deg, rgba(30,120,255,0.18) 0%, rgba(0,222,180,0.1) 100%)",
+                  border: "1px solid rgba(30,120,255,0.35)",
+                  boxShadow: "0 0 60px rgba(30,120,255,0.15)",
+                }
               : {
-                border: "1px solid rgba(255,255,255,0.07)",
-              }),
+                  border: "1px solid rgba(255,255,255,0.07)",
+                }),
             "&::before": highlight
               ? {
-                content: '""',
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: "2px",
-                background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
-                // background: "linear-gradient(90deg, #000616, #053684)",
-              }
+                  content: '""',
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: "2px",
+                  background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
+                }
               : {},
           }}
         >
@@ -124,7 +125,7 @@ function PlanCard({ name, price, desc, features, highlight, delay }) {
               fontWeight: 700,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: highlight ? "text.accent" : "text.accent",
+              color: "text.accent",
               mb: 2,
             }}
           >
@@ -207,7 +208,8 @@ function PlanCard({ name, price, desc, features, highlight, delay }) {
           </Box>
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
             <Button
-              href="/contact"
+              // onClick={() => navigate("/contact")}
+              onClick={() => navigate(ROUTES.CONTACT)}
               fullWidth
               variant={highlight ? "contained" : "outlined"}
               sx={{
@@ -218,19 +220,18 @@ function PlanCard({ name, price, desc, features, highlight, delay }) {
                 textTransform: "none",
                 ...(highlight
                   ? {
-                    background:
-                      "linear-gradient(135deg,#1E78FF 0%,#00DEB4 100%)",
-                    // "linear-gradient(135deg, #000616 0%, #053684 100%)",
-                    boxShadow: "0 8px 28px rgba(30,120,255,0.35)",
-                  }
+                      background:
+                        "linear-gradient(135deg,#1E78FF 0%,#00DEB4 100%)",
+                      boxShadow: "0 8px 28px rgba(30,120,255,0.35)",
+                    }
                   : {
-                    border: "1px solid rgba(255,255,255,0.15)",
-                    color: "text.tertairy",
-                    "&:hover": {
-                      border: "1px solid rgba(255,255,255,0.35)",
-                      bgcolor: "Background.secondary",
-                    },
-                  }),
+                      border: "1px solid rgba(255,255,255,0.15)",
+                      color: "text.tertairy",
+                      "&:hover": {
+                        border: "1px solid rgba(255,255,255,0.35)",
+                        bgcolor: "Background.secondary",
+                      },
+                    }),
               }}
             >
               Get Started →
@@ -314,6 +315,8 @@ function UseCaseCard({ icon, title, desc, tag, delay }) {
 
 //  Main Component
 const Personal = () => {
+  const navigate = useNavigate();
+
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -550,7 +553,9 @@ const Personal = () => {
                 mb: 5,
               }}
             >
-              At CoBanq, we use smart technology and a global network to make international transfers effortless, from personal remittances to enterprise FX, so your money moves faster and more affordably.
+              At CoBanq, we use smart technology and a global network to make
+              international transfers effortless, from personal remittances to
+              enterprise FX, so your money moves faster and more affordably.
             </Typography>
           </Reveal>
 
@@ -568,7 +573,8 @@ const Personal = () => {
                 whileTap={{ scale: 0.96 }}
               >
                 <Button
-                  href="/contact"
+                  // onClick={() => navigate("/contact")}
+                  onClick={() => navigate(ROUTES.CONTACT)}
                   variant="contained"
                   sx={{
                     px: { xs: 4, md: 6 },
@@ -578,7 +584,6 @@ const Personal = () => {
                     borderRadius: "100px",
                     textTransform: "none",
                     background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
-                    // background:"linear-gradient(135deg, #000616 0%, #053684 100%)",
                     boxShadow: "0 8px 32px rgba(30,120,255,0.35)",
                     "&:hover": {
                       boxShadow: "0 14px 44px rgba(30,120,255,0.5)",
@@ -673,7 +678,6 @@ const Personal = () => {
                       background: "Background.main",
                       color: "text.tertairy",
                       WebkitBackgroundClip: "text",
-                      // WebkitTextFillColor: "transparent",
                       mb: 1,
                     }}
                   >
@@ -732,7 +736,6 @@ const Personal = () => {
                 component="span"
                 sx={{
                   background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
-                  // background: "linear-gradient(90deg, #000616, #053684)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                 }}
@@ -850,10 +853,6 @@ const Personal = () => {
                     sx={{
                       p: { xs: 3, md: 4 },
                       height: "100%",
-                      // borderRight:
-                      //   i < 2
-                      //     ? { md: "1px solid rgba(255,255,255,0.06)" }
-                      //     : "none",
                       textAlign: { xs: "left", md: "center" },
                     }}
                   >
@@ -966,7 +965,12 @@ const Personal = () => {
           <Grid container spacing={{ xs: 2, md: 3 }} alignItems="stretch">
             {plans.map((plan, i) => (
               <Grid item xs={12} md={4} key={plan.name}>
-                <PlanCard {...plan} delay={0.08 + i * 0.1} />
+                {/* ✅ navigate prop pass kiya */}
+                <PlanCard
+                  {...plan}
+                  delay={0.08 + i * 0.1}
+                  navigate={navigate}
+                />
               </Grid>
             ))}
           </Grid>
@@ -1062,7 +1066,10 @@ const Personal = () => {
                   textAlign: "justify",
                 }}
               >
-                With CoBanq business accounts, you can seamlessly hold, exchange, and manage funds across currencies, making international payments, foreign exchange, and cash flow easier than ever.
+                With CoBanq business accounts, you can seamlessly hold,
+                exchange, and manage funds across currencies, making
+                international payments, foreign exchange, and cash flow easier
+                than ever.
               </Typography>
             </Box>
             <Box
@@ -1075,7 +1082,6 @@ const Personal = () => {
               <Box
                 component="img"
                 src="https://burqfx.com/public_assets/business_assets/images_v2/header5.png"
-                // src="https://burqfx.com/public_assets/business_assets/images_v2/header4.png"
                 alt="CoBanq"
                 loading="lazy"
                 sx={{
@@ -1083,9 +1089,6 @@ const Personal = () => {
                   height: "auto",
                   objectFit: "cover",
                   borderRadius: 33,
-                  // border: "1px solid var(--color-surface-border)",
-                  // boxShadow: " 24px 88px rgba(247, 233, 233, 1)",
-                  // boxShadow: "0 24px 48px rgba(226, 222, 222, 1)",
                   transition: "all 0.3s ease-in-out",
                   "&:hover": {
                     transform: "scale(1.05)",
@@ -1139,7 +1142,6 @@ const Personal = () => {
                   component="span"
                   sx={{
                     background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
-                    // background: "linear-gradient(90deg, #000616, #053684)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   }}
@@ -1173,7 +1175,8 @@ const Personal = () => {
                   whileTap={{ scale: 0.96 }}
                 >
                   <Button
-                    href="/contact"
+                    // onClick={() => navigate("/contact")}
+                    onClick={() => navigate(ROUTES.CONTACT)}
                     variant="contained"
                     sx={{
                       px: { xs: 5, md: 7 },
@@ -1184,7 +1187,6 @@ const Personal = () => {
                       textTransform: "none",
                       background:
                         "linear-gradient(135deg,#1E78FF 0%,#00DEB4 100%)",
-                      // "linear-gradient(135deg, #000616 0%, #053684 100%)",
                       boxShadow: "0 12px 40px rgba(30,120,255,0.38)",
                       "&:hover": {
                         boxShadow: "0 18px 52px rgba(30,120,255,0.55)",
@@ -1199,7 +1201,8 @@ const Personal = () => {
                   whileTap={{ scale: 0.96 }}
                 >
                   <Button
-                    href="/contact"
+                    // onClick={() => navigate("/contact")}
+                    onClick={() => navigate(ROUTES.CONTACT)}
                     variant="outlined"
                     sx={{
                       px: { xs: 5, md: 6 },

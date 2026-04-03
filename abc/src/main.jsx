@@ -30,7 +30,6 @@ const with_suspense = (LazyComponent) => (
   </Suspense>
 );
 
-// 2. Change createBrowserRouter to createHashRouter
 export const router = createHashRouter([
   {
     path: "/",

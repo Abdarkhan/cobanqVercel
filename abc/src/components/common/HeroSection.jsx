@@ -1,13 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Box, Typography, Button, Container } from "@mui/material";
 import { motion, useScroll, useTransform } from "framer-motion";
 import hero from "../../assets/hero.png";
-import GlobalAlert from "../modal/GlobalAlert";
-import { useState } from "react";
+import AccountTypeModal from "../modal/AccountTypeModal";
 
-const GRADIENT =
-  // "linear-gradient(135deg, #000616 0%, #053684 50%, #000616 100%)";
-  "linear-gradient(135deg, #000616 0%, #053685 100%)";
+const GRADIENT = "linear-gradient(135deg, #000616 0%, #053685 100%)";
 
 const container = {
   hidden: { opacity: 0 },
@@ -27,37 +24,19 @@ const item = (y) => ({
 });
 
 export default function HeroSection() {
-  const [alert, setAlert] = useState({ open: false });
+  const [modalMode, setModalMode] = useState(null); // "register" | null
 
-  const showAlert = (config) => setAlert({ open: true, ...config });
-  const closeAlert = () => setAlert({ open: false });
   const section_ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: section_ref,
     offset: ["start start", "end start"],
   });
 
-  const preview_y = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5, 0.85],
-    [48, 0, -24, -60],
-  );
-  const preview_scale = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.4, 0.7, 1],
-    [0.88, 1, 1.02, 1, 0.96],
-  );
-  const preview_opacity = useTransform(
-    scrollYProgress,
-    [0, 0.12, 0.2, 0.88, 1],
-    [0.5, 1, 1, 1, 0.6],
-  );
+  const preview_y = useTransform(scrollYProgress, [0, 0.2, 0.5, 0.85], [48, 0, -24, -60]);
+  const preview_scale = useTransform(scrollYProgress, [0, 0.15, 0.4, 0.7, 1], [0.88, 1, 1.02, 1, 0.96]);
+  const preview_opacity = useTransform(scrollYProgress, [0, 0.12, 0.2, 0.88, 1], [0.5, 1, 1, 1, 0.6]);
   const preview_rotate_x = useTransform(scrollYProgress, [0, 0.25], [10, 0]);
-  const preview_shadow = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5],
-    [0, 0.4, 0.85],
-  );
+  const preview_shadow = useTransform(scrollYProgress, [0, 0.2, 0.5], [0, 0.4, 0.85]);
   const preview_box_shadow = useTransform(
     preview_shadow,
     (v) =>
@@ -69,7 +48,6 @@ export default function HeroSection() {
       ref={section_ref}
       sx={{
         minHeight: { xs: "100vh", md: "140vh" },
-        // minHeight: "140vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -103,14 +81,13 @@ export default function HeroSection() {
         sx={{ position: "relative", zIndex: 1, py: { xs: 8, md: 12 }, mt: { xs: 0, sm: 4, md: 0 } }}
       >
         <motion.div variants={container} initial="hidden" animate="visible">
+
           <motion.div variants={item(40)}>
             <Typography
               component="h1"
-              variant="h1"
               sx={{
                 color: "#fff",
                 mb: 2,
-                // maxWidth: 800,
                 mx: "auto",
                 fontSize: { xs: "2.25rem", sm: "2.75rem", md: "80px" },
                 fontWeight: 900,
@@ -118,7 +95,7 @@ export default function HeroSection() {
                 lineHeight: 1.1,
               }}
             >
-              Powering the flow<br /> of {" "}
+              Powering the flow<br /> of{" "}
               <Box
                 component="span"
                 sx={{
@@ -133,13 +110,12 @@ export default function HeroSection() {
               </Box>
             </Typography>
           </motion.div>
+
           <motion.div variants={item(30)}>
             <Typography
-              // variant="h6"
               sx={(theme) => ({
                 ...theme.typography.main_text,
                 color: "rgba(255,255,255,0.9)",
-                // fontSize: { xs: 14, md: 16 },
                 maxWidth: 600,
                 mx: "auto",
                 mb: 4,
@@ -147,39 +123,28 @@ export default function HeroSection() {
                 lineHeight: 1.6,
               })}
             >
-              At CoBanq, we use smart technology and a global network to make international transfers effortless, from personal remittances to enterprise FX, so your money moves faster and more affordably.
+              At CoBanq, we use smart technology and a global network to make
+              international transfers effortless, from personal remittances to
+              enterprise FX, so your money moves faster and more affordably.
             </Typography>
           </motion.div>
+
           <motion.div
             variants={item(24)}
-            style={{
-              display: "flex",
-              gap: 12,
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
+            style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}
           >
+            {/* ── Open an Account → opens Register modal ── */}
             <Button
               variant="contained"
               size="large"
-              onClick={() =>
-                showAlert({
-                  type: "warning",
-                  icon: "⚠️",
-                  title: "App Under Development",
-                  desc: "Our app is still in development. It will be available soon — stay tuned!",
-                  confirmText: "Okay",
-                })
-              }
+              onClick={() => setModalMode("register")}
               sx={{
                 background: "#053685",
                 color: "#fff",
-                // px: 3.5,
                 py: 1.75,
                 fontSize: "18px",
                 fontWeight: 600,
-                // borderRadius: 2,
-                borderRadius: '10px',
+                borderRadius: "10px",
                 boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
                 "&:hover": {
                   background: "rgba(255,255,255,0.95)",
@@ -190,64 +155,6 @@ export default function HeroSection() {
             >
               Open an account
             </Button>
-            {/* <Button
-              variant="contained"
-              size="large"
-              onClick={() =>
-                showAlert({
-                  type: "warning",
-                  icon: "⚠️",
-                  title: "App Under Development",
-                  desc: "Our app is still in development. It will be available soon — stay tuned!",
-                  confirmText: "Okay",
-                })
-              }
-              sx={{
-                background: "#fff",
-                color: "#053684",
-                px: 3.5,
-                py: 1.75,
-                fontSize: "1rem",
-                fontWeight: 700,
-                borderRadius: 2,
-                boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
-                "&:hover": {
-                  background: "rgba(255,255,255,0.95)",
-                  boxShadow: "0 12px 40px rgba(0,0,0,0.3)",
-                  color: "#000616",
-                },
-              }}
-            >
-              Get the app
-            </Button>
-            <Button
-              variant="outlined"
-              size="large"
-              onClick={() =>
-                showAlert({
-                  type: "info",
-                  icon: "🌐",
-                  title: "Browser Version Coming Soon",
-                  desc: "Browser version is not available yet. Download the app for a better experience.",
-                  confirmText: "Got It",
-                  cancelText: "Cancel",
-                })
-              }
-              sx={{
-                borderColor: "rgba(255,255,255,0.5)",
-                color: "#fff",
-                px: 3.5,
-                py: 1.75,
-                borderRadius: 2,
-                fontWeight: 600,
-                "&:hover": {
-                  borderColor: "rgba(255,255,255,0.8)",
-                  bgcolor: "rgba(255,255,255,0.08)",
-                },
-              }}
-            >
-              Open in browser
-            </Button> */}
           </motion.div>
 
           <motion.div
@@ -265,48 +172,23 @@ export default function HeroSection() {
                 borderRadius: 8,
               }}
             >
-              <motion.div
-                style={{ boxShadow: preview_box_shadow }}
-                sx={{
-                  mt: { xs: 6, md: 10 },
-                  mx: "auto",
-                  // borderRadius: 4,
-                  overflow: "hidden",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  position: "relative",
-                  // maxWidth: 1000,
-                  "&::before": {
-                    content: '""',
-                    position: "absolute",
-                    inset: 0,
-                    // borderRadius: 3,
-                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.1)",
-                    pointerEvents: "none",
-                  },
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img
-                    src={hero}
-                    alt="App preview"
-                    decoding="async"
-                    style={{ width: "100%", }}
-                  />
+              <motion.div style={{ boxShadow: preview_box_shadow }}>
+                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <img src={hero} alt="App preview" decoding="async" style={{ width: "100%" }} />
                 </Box>
               </motion.div>
             </motion.div>
           </motion.div>
+
         </motion.div>
       </Container>
 
-      {/* ── Single GlobalAlert ───────────────────────────────────────── */}
-      <GlobalAlert {...alert} onConfirm={closeAlert} onCancel={closeAlert} />
+      {/* ── Account Type Modal ─────────────────────────────────────────── */}
+      <AccountTypeModal
+        open={Boolean(modalMode)}
+        onClose={() => setModalMode(null)}
+        mode={modalMode}
+      />
     </Box>
   );
 }

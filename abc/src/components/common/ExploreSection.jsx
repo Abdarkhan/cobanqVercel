@@ -1,7 +1,10 @@
 import React from "react";
 import { Box, Container, Typography, Button, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/constants/routes";
 
 export default function ExploreSection() {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -25,7 +28,8 @@ export default function ExploreSection() {
             <Typography
               // variant="main_header"
               sx={(theme) => ({
-                ...theme.typography.main_header, mb: 2,
+                ...theme.typography.main_header,
+                mb: 2,
               })}
             >
               Explore what's possible with CoBanq
@@ -42,34 +46,13 @@ export default function ExploreSection() {
               Multi-currency accounts, global payouts, and APIs for developers.
               Talk to our team to find the right solution.
             </Typography>
-            {/* <Button
-              href="/contact"
-              variant="contained"
-              sx={{
-                background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
-                // background: "linear-gradient(90deg, #000616, #053684)",
-                color: "#fff",
-                // px: 3,
-                // py: 1.5,
-                fontWeight: 600,
-                "&:hover": {
-                  opacity: 0.95,
-                  background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
-                  // background: "linear-gradient(90deg, #000616, #053684)",
-                },
-              }}
-            >
-              Get in touch
-            </Button> */}
             <Button
-              href="/contact"
+              onClick={() => navigate(ROUTES.CONTACT)} // href="/contact"
               variant="contained"
               sx={{
                 background: "#053685",
-                borderRadius: '10px',
+                borderRadius: "10px",
                 mt: 4,
-                // bgcolor: "#7a9db5",
-                // background: "linear-gradient(90deg,#1E78FF,#00DEB4)",
                 "&:hover": { bgcolor: "#5f7a8b" },
                 textTransform: "none",
               }}

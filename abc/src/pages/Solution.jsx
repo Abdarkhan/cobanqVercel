@@ -10,6 +10,7 @@ import {
 import { ArrowForward } from "@mui/icons-material";
 import { motion, useInView } from "framer-motion";
 import { use_reveal } from "@/components/hooks/use_scroll_animation";
+import { useNavigate } from "react-router-dom";
 
 const BORDER = "rgba(255,255,255,0.08)";
 
@@ -61,6 +62,7 @@ const SOLUTIONS = [
 ];
 
 export default function Solution() {
+  const navigate = useNavigate();
 
   const heading = use_reveal({ y: 50, duration: 0.8 });
 
@@ -141,7 +143,8 @@ export default function Solution() {
               <motion.div variants={item(24)}>
                 <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
                   <Button
-                    href="/contact"
+                    // href="/contact"
+                     onClick={() => navigate(ROUTES.CONTACT)}
                     variant="contained"
                     size="large"
                     endIcon={<ArrowForward sx={{ fontSize: 16 }} />}
@@ -358,7 +361,8 @@ export default function Solution() {
             Ready to explore a strategic collaboration?
           </Typography>
           <Button
-            href="/contact"
+            // href="/contact"
+            onClick={() => navigate(ROUTES.CONTACT)}
             variant="contained"
             sx={{
               background: "#053685",
